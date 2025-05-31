@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--tg-theme-bg-color, #ffffff);
+      color: var(--tg-theme-text-color, #000000);
+    }
+    h1 {
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="greeting">Loading...</h1>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();       // Tell Telegram the app is ready
+    tg.expand();      // Optional: makes app full height
+
+    // Get user name from Telegram context
+    const user = tg.initDataUnsafe?.user;
+    const firstName = user?.first_name || "there";
+    
+    // Display greeting
+    document.getElementById("greeting").innerText = `Hello, ${firstName}! 👋`;
+  </script>
+</body>
+</html>
